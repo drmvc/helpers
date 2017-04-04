@@ -28,7 +28,7 @@ class CleanerTest extends TestCase
          * Default tests
          */
         $this->tests[1] = "data";
-        $this->tests[2] = "ё!@#$%^&*()_+";
+        $this->tests[2] = "~!@#$%^&*()_+";
         $this->tests[3] = "test123\n\n";
     }
 
@@ -38,8 +38,8 @@ class CleanerTest extends TestCase
     public function testDefault()
     {
         $this->assertTrue(Cleaner::run($this->tests[1]) == "data");
-        $this->assertTrue(Cleaner::run($this->tests[2]) == "ё!@#$%^&*()_+");
-        $this->assertTrue(Cleaner::run($this->tests[3]) == "test123<br/><br/>");
+        $this->assertTrue(Cleaner::run($this->tests[2]) == "~!@#$%^&amp;*()_+");
+        $this->assertTrue(Cleaner::run($this->tests[3]) == "test123<br/>");
     }
 
 }
