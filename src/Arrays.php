@@ -11,7 +11,7 @@ class Arrays
      * @param $object
      * @return bool|int|string
      */
-    function md_search($parents, $searched, $object = true)
+    static function md_search($parents, $searched, $object = true)
     {
         if (empty($searched) || empty($parents)) {
             return false;
