@@ -10,7 +10,7 @@
          stopOnFailure="false"
          syntaxCheck="false">
     <testsuites>
-        <testsuite name="PCRecruiter Test Suite">
+        <testsuite name="DrMVC helpers tests">
             <directory suffix=".php">./tests/</directory>
         </testsuite>
     </testsuites>
