@@ -28,7 +28,7 @@ Collection of classes with some useful features.
 
 * Download the latest [DrMVC Helpers](https://github.com/drmvc/helpers/releases) package
 * Extract the archive
-* Initiate the styles and scripts, just run `composer update` from directory with sources
+* Initiate the scripts, just run `composer update` from directory with sources
 
 ## About PHP Unit Tests
 
