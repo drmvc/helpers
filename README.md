@@ -17,6 +17,7 @@ Collection of classes with some useful features.
 | \DrMVC\Helpers\Generators | URL slug and Gravatar generators |
 | \DrMVC\Helpers\HTML       | HTML primitives like checkbox and selector |
 | \DrMVC\Helpers\UUID       | UUID v3,v4,v5 generator and validator |
+| \DrMVC\Helpers\Validators | Some specified validators |
 
 ## How to install
 
