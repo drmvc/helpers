@@ -9,14 +9,14 @@ class Arrays
      * @param string $path - Source directory with files
      * @return array
      */
-    function dir_to_array($path)
+    static function dir_to_array($path)
     {
         $result = array();
         $dirContent = scandir($path);
 
         foreach ($dirContent as $key => $value) {
             if (!in_array($value, array(".", ".."))) {
-                if (is_dir($path . DIRECTORY_SEPARATOR . $value)) $result[$value] = $this->dir_to_array($path . DIRECTORY_SEPARATOR . $value);
+                if (is_dir($path . DIRECTORY_SEPARATOR . $value)) $result[$value] = self::dir_to_array($path . DIRECTORY_SEPARATOR . $value);
                 else $result[] = $value;
             }
         }
