@@ -2,6 +2,24 @@
 
 class Arrays
 {
+    static $key;
+
+    static function order_by()
+    {
+        $args = func_get_args();
+        $data = array_shift($args);
+        foreach ($args as $n => $field) {
+            if (is_string($field)) {
+                $tmp = array();
+                foreach ($data as $key => $row)
+                    $tmp[$key] = $row[$field];
+                $args[$n] = $tmp;
+            }
+        }
+        $args[] = &$data;
+        call_user_func_array('array_multisort', $args);
+        return array_pop($args);
+    }
 
     /**
      * Check if array is multidimensional
@@ -9,7 +27,7 @@ class Arrays
      * @param array $array
      * @return bool
      */
-    static function is_md_array($array)
+    static function is_md($array)
     {
         // First we need know what value is array
         if (is_array($array))
@@ -29,7 +47,7 @@ class Arrays
      * @param array $b
      * @return bool
      */
-    static function array_equal($a, $b)
+    static function equivalent($a, $b)
     {
         // Both arrays should be... arrays
         $is_arrays = (is_array($a) && is_array($b));

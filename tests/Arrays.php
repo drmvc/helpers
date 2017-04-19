@@ -7,12 +7,20 @@ use DrMVC\Helpers\Arrays;
 class ArraysTest extends TestCase
 {
     public $array;
+    public $array_keys;
     public $dir;
     public $dir_array;
 
     public function __construct($name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
+
+        $this->array_keys = array(
+            array("title" => "lemon", "count" => 4),
+            array("title" => "orange", "count" => 2),
+            array("title" => "banana", "count" => 9),
+            array("title" => "apple", "count" => 5)
+        );
 
         $this->array[1] = array('k1' => 'v1', 'k2' => 'v2');
         $this->array[2] = array('k2' => 'v2', 'k1' => 'v1');
@@ -36,15 +44,28 @@ class ArraysTest extends TestCase
 
     public function testIsMDArray()
     {
-        $this->assertTrue(Arrays::is_md_array($this->array));
-        $this->assertFalse(Arrays::is_md_array($this->array[1]));
+        $this->assertTrue(Arrays::is_md($this->array));
+        $this->assertFalse(Arrays::is_md($this->array[1]));
     }
 
     public function testArrayEqual()
     {
-        $this->assertTrue(Arrays::array_equal($this->array[1], $this->array[1]));
-        $this->assertTrue(Arrays::array_equal($this->array[1], $this->array[2]));
-        $this->assertFalse(Arrays::array_equal($this->array[1], $this->array[3]));
+        $this->assertTrue(Arrays::equivalent($this->array[1], $this->array[1]));
+        $this->assertTrue(Arrays::equivalent($this->array[1], $this->array[2]));
+        $this->assertFalse(Arrays::equivalent($this->array[1], $this->array[3]));
+    }
+
+    public function testSortByKey()
+    {
+        $out[1]['asc'] = Arrays::order_by($this->array_keys, 'title', SORT_ASC);
+        $out[1]['desc'] = Arrays::order_by($this->array_keys, 'title', SORT_DESC);
+        $out[2]['asc'] = Arrays::order_by($this->array_keys, 'count', SORT_ASC);
+        $out[2]['desc'] = Arrays::order_by($this->array_keys, 'count', SORT_DESC);
+
+        $this->assertFalse(print_r($out[1]['asc'], true) == print_r($this->array_keys, true));
+        $this->assertFalse(print_r($out[1]['desc'], true) == print_r($this->array_keys, true));
+        $this->assertFalse(print_r($out[2]['asc'], true) == print_r($this->array_keys, true));
+        $this->assertFalse(print_r($out[2]['desc'], true) == print_r($this->array_keys, true));
     }
 
     public function testDirToArray()
@@ -62,7 +83,7 @@ class ArraysTest extends TestCase
     {
         $result1 = Arrays::md_search($this->array, $this->array[3], false);
         $result2 = Arrays::md_search($this->array, array('some' => 'value'), false);
-        error_log($result2);
+
         $this->assertTrue($result1[0] == 3);
         $this->assertFalse($result2);
     }
