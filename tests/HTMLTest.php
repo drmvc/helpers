@@ -1,8 +1,7 @@
-<?php
-require_once(__DIR__ . '/../src/HTML.php');
+<?php namespace DrMVC\Helpers;
+include __DIR__ . "/../src/HTML.php";
 
 use PHPUnit\Framework\TestCase;
-use DrMVC\Helpers\HTML;
 
 class HTMLTest extends TestCase
 {

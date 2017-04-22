@@ -1,10 +1,9 @@
-<?php
-require_once(__DIR__ . '/../src/Arrays.php');
+<?php namespace DrMVC\Helpers;
+include __DIR__ . "/../src/Arrays.php";
 
 use PHPUnit\Framework\TestCase;
-use DrMVC\Helpers\Arrays;
 
-class ArraysTest extends TestCase
+class arraysTest extends TestCase
 {
     public $array;
     public $array_keys;

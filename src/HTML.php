@@ -33,15 +33,20 @@ class HTML
     /**
      * Generate checkbox
      *
-     * @param $name
-     * @param $status
+     * @param string $name
+     * @param bool $status
+     * @param string $class
      * @param null $id
      * @return string
      */
-    public static function checkbox($name, $status, $id = NULL)
+    public static function checkbox($name, $status = false, $class = 'checkbox', $id = null)
     {
-        if ('t' == $status) $ch = 'checked'; else  $ch = '';
-        return "<input type='checkbox' class='checkbox " . $name . "' data-id='" . $id . "' name='" . $name . "' " . $ch . ">";
+        // Checked if true status
+        $checked = '';
+        if (true === $status) $checked = 'checked';
+
+        $result = "<input type='checkbox' data-id='" . $id . "' name='" . $name . "' " . $checked . ">";
+        return $result;
     }
 
 }

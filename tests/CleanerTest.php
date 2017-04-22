@@ -1,8 +1,7 @@
-<?php
-require_once(__DIR__ . '/../src/Cleaner.php');
+<?php namespace DrMVC\Helpers;
+include __DIR__ . "/../src/Cleaner.php";
 
 use PHPUnit\Framework\TestCase;
-use DrMVC\Helpers\Cleaner;
 
 class CleanerTest extends TestCase
 {

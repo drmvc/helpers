@@ -11,18 +11,19 @@ class Generators
      * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
      * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
      * @param bool $img True to return a complete IMG tag False for just the URL
-     * @param array $atts Optional, additional key/value attributes to include in the IMG tag
+     * @param array $attrs Optional, additional key/value attributes to include in the IMG tag
      * @return String containing either just a URL or a complete image tag
+     *
      * @source https://gravatar.com/site/implement/images/php/
      */
-    static function get_gravatar($email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array())
+    static function gravatar($email, $s = '80', $d = 'mm', $r = 'g', $img = false, $attrs = array())
     {
         $url = 'https://www.gravatar.com/avatar/';
         $url .= md5(strtolower(trim($email)));
         $url .= "?s=$s&d=$d&r=$r";
         if ($img) {
             $url = '<img src="' . $url . '"';
-            foreach ($atts as $key => $val)
+            foreach ($attrs as $key => $val)
                 $url .= ' ' . $key . '="' . $val . '"';
             $url .= ' />';
         }
@@ -30,12 +31,12 @@ class Generators
     }
 
     /**
-     * Generate correct url from string
+     * Generate correct url from string (UTF-8 supported)
      *
      * @param $slug
      * @return string
      */
-    static function create_slug($slug)
+    static function slug($slug)
     {
 
         $lettersNumbersSpacesHyphens = '/[^\-\s\pN\pL]+/u';
