@@ -10,7 +10,8 @@
     "array",
     "uuid",
     "url",
-    "html"
+    "html",
+    "geoposition"
   ],
   "authors": [
     {

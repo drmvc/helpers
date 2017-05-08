@@ -62,11 +62,11 @@ class GeoPosition
         $resultArray = array();
         $lat1 = $center[0];
         $long1 = $center[1];
-        foreach ($coordinates as $coordinate) {
-            $lat2 = $coordinate[0];
-            $long2 = $coordinate[1];
+        foreach ($coordinates as $key => $value) {
+            $lat2 = $value[0];
+            $long2 = $value[1];
             $distance = 3959 * acos(cos(self::radians($lat1)) * cos(self::radians($lat2)) * cos(self::radians($long2) - self::radians($long1)) + sin(self::radians($lat1)) * sin(self::radians($lat2)));
-            if ($distance < $radius) $resultArray[] = $coordinate;
+            if ($distance < $radius) $resultArray[$key] = $value;
         }
         return $resultArray;
     }

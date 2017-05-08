@@ -10,14 +10,16 @@ Collection of classes with some useful features.
 
 ## List of classes
 
-| Class                     | Description |
-|---------------------------|-------------|
-| \DrMVC\Helpers\Arrays     | Manipulation with multidimensional arrays |
-| \DrMVC\Helpers\Cleaner    | Text cleaner class |
-| \DrMVC\Helpers\Generators | URL slug and Gravatar generators |
-| \DrMVC\Helpers\HTML       | HTML primitives like checkbox and selector |
-| \DrMVC\Helpers\UUID       | UUID v3,v4,v5 generator and validator |
-| \DrMVC\Helpers\Validators | Some specified validators |
+| Class                      | Description |
+|----------------------------|-------------|
+| \DrMVC\Helpers\Arrays      | Manipulation with multidimensional arrays |
+| \DrMVC\Helpers\Cleaner     | Text cleaner class |
+| \DrMVC\Helpers\Generators  | URL slug and Gravatar generators |
+| \DrMVC\Helpers\GeoPosition | For work with geographic coordinates |
+| \DrMVC\Helpers\HTML        | HTML primitives like checkbox and selector |
+| \DrMVC\Helpers\UUID        | UUID v3,v4,v5 generator and validator |
+| \DrMVC\Helpers\Validators  | Some specified validators |
+
 
 ## How to install
 
@@ -33,11 +35,13 @@ Collection of classes with some useful features.
 
 ## About PHP Unit Tests
 
-* [ ] Arrays.php
+* [x] Arrays.php
 * [x] Cleaner.php
 * [ ] Generators.php
+* [x] GeoPosition.php
 * [ ] HTML.php
-* [ ] UUID.php
+* [x] UUID.php
+* [x] Validators.php
 
 You can run tests by hands from source directory via `vendor/bin/phpunit` command. 
 
