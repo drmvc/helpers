@@ -1,6 +1,6 @@
 {
   "name": "drmvc/helpers",
-  "type": "project",
+  "type": "library",
   "description": "Collection of classes with some useful features",
   "homepage": "https://drmvc.com/",
   "license": "MIT",
