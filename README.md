@@ -8,11 +8,13 @@
 
 Collection of classes with some useful features.
 
+    composer require drmvc/helpers
+
 ## List of classes
 
 | Class                      | Description |
 |----------------------------|-------------|
-| \DrMVC\Helpers\Arrays      | Manipulation with multidimensional arrays |
+| [\DrMVC\Helpers\Arrays](docs/README.Arrays.md) | Manipulation with single and multidimensional arrays |
 | \DrMVC\Helpers\Cleaner     | Text cleaner class |
 | \DrMVC\Helpers\Generators  | URL slug and Gravatar generators |
 | \DrMVC\Helpers\GeoPosition | For work with geographic coordinates |
@@ -20,24 +22,11 @@ Collection of classes with some useful features.
 | \DrMVC\Helpers\UUID        | UUID v3,v4,v5 generator and validator |
 | \DrMVC\Helpers\Validators  | Some specified validators |
 
-
-## How to install
-
-### Via composer
-
-    composer require drmvc/helpers
-
-### Classic style
-
-* Download the latest [DrMVC Helpers](https://github.com/drmvc/helpers/releases) package
-* Extract the archive
-* Initiate the scripts, just run `composer update` from directory with sources
-
 ## About PHP Unit Tests
 
 * [x] Arrays.php
 * [x] Cleaner.php
-* [ ] Generators.php
+* [x] Generators.php
 * [x] GeoPosition.php
 * [ ] HTML.php
 * [x] UUID.php
