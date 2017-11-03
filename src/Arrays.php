@@ -88,34 +88,23 @@ class Arrays
      * @param bool $object - Method work mode, if object then true, if array then false
      * @return bool|array
      */
-    static function md_search($multidimensional, $target, $object = true)
+    public function md_search($multidimensional, $target, $object = true)
     {
         if (empty($target) || empty($multidimensional)) return false;
-
         // Default state for output value
         $for_out = array();
-
         // Parse the $multidimensional array by keys and values
         foreach ($multidimensional as $key => $value) {
-            //error_log($key);
-            //error_log(print_r($value));
             $exists = true;
-
             foreach ($target as $skey => $svalue) {
-                //error_log($skey . '=>' . $svalue);
                 if ($object) $exists = ($exists && isset($value->$skey) && ($value->$skey == $svalue));
                 else $exists = ($exists && isset($value[$skey]) && ($value[$skey] == $svalue));
             }
-
             // Generate array of keys with founded subArrays
             if ($exists) $for_out[] = $key;
         }
-
-        // If output is not empty
-        if (!empty($for_out)) return $for_out;
-
-        // False by default
-        return false;
+        // If output is not empty, false by default
+        return !empty($for_out) ? $for_out : false;
     }
 
 }
