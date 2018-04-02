@@ -96,34 +96,69 @@ class Arrays
     }
 
     /**
-     * Find nested array inside two-dimensional array
+     * Make search in MD object
      *
-     * @param array|object $multidimensional - Where need to find
-     * @param array|object $target - What we need to find
-     * @param bool $isObject - Method work mode, if object then true, if array then false
-     * @return bool|array
+     * @param   object $multi
+     * @param   array $target
+     * @return  array
      */
-    public static function searchMd($multidimensional, $target, $isObject = true)
+    private static function searchMdObject($multi, array $target): array
     {
-        if (empty($target) || empty($multidimensional)) {
-            return false;
-        }
-
-        $output = array_map(
-            function($element) use ($target, $isObject) {
+        return array_map(
+            function($element) use ($target) {
                 $exist = true;
                 foreach ($target as $skey => $svalue) {
-                    $exist = $isObject
-                        ? ($exist && isset($element->$skey) && ($element->$skey === $svalue))
-                        : ($exist && isset($element[$skey]) && ($element[$skey] === $svalue));
+                    $exist = $exist && isset($element->$skey) && ($element->$skey === $svalue);
                 }
                 return $exist ? $element : null;
             },
-            $multidimensional
+            (array) $multi
         );
+    }
+
+    /**
+     * Make search in MD array
+     *
+     * @param   array $multi
+     * @param   array $target
+     * @return  array
+     */
+    private static function searchMdArray(array $multi, array $target): array
+    {
+        return array_map(
+            function($element) use ($target) {
+                $exist = true;
+                foreach ($target as $skey => $svalue) {
+                    $exist = $exist && isset($element[$skey]) && ($element[$skey] === $svalue);
+                }
+                return $exist ? $element : null;
+            },
+            $multi
+        );
+    }
+
+    /**
+     * Find nested array inside two-dimensional array
+     *
+     * @param   array|object $multi where need to make search
+     * @param   array $target what we want to find
+     * @param   bool $isObject if multidimensional array is object
+     * @return  bool|array
+     */
+    public static function searchMd($multi, $target, $isObject = true)
+    {
+        if (empty($target) || empty($multi)) {
+            return false;
+        }
+
+        $output = $isObject
+            ? self::searchMdObject($multi, $target)
+            : self::searchMdArray($multi, $target);
+
+        $output = array_values(array_filter($output));
 
         // If output is not empty, false by default
-        return !empty($output) ? array_filter($output) : false;
+        return !empty($output) ? $output : false;
     }
 
 }

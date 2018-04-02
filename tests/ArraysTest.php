@@ -16,31 +16,31 @@ class ArraysTest extends TestCase
     {
         parent::__construct($name, $data, $dataName);
 
-        $this->array_keys = array(
-            array('title' => 'lemon', 'count' => 4),
-            array('title' => 'orange', 'count' => 2),
-            array('title' => 'banana', 'count' => 9),
-            array('title' => 'apple', 'count' => 5)
-        );
+        $this->array_keys = [
+            ['title' => 'lemon', 'count' => 4],
+            ['title' => 'orange', 'count' => 2],
+            ['title' => 'banana', 'count' => 9],
+            ['title' => 'apple', 'count' => 5]
+        ];
 
-        $this->array[1] = array('k1' => 'v1', 'k2' => 'v2');
-        $this->array[2] = array('k2' => 'v2', 'k1' => 'v1');
-        $this->array[3] = array('k1' => 'v1', 'k3' => 'v3');
+        $this->array[1] = ['k1' => 'v1', 'k2' => 'v2'];
+        $this->array[2] = ['k2' => 'v2', 'k1' => 'v1'];
+        $this->array[3] = ['k1' => 'v1', 'k3' => 'v3'];
 
         $this->dir = __DIR__ . '/dir4tests';
-        $this->dir_array = array(
+        $this->dir_array = [
             'dummy.txt',
-            'subdirectory1' => array(
+            'subdirectory1' => [
                 'dummy1.txt',
                 'dummy2.txt'
-            ),
-            'subdirectory2' => array(
+            ],
+            'subdirectory2' => [
                 'dummy.txt',
-                'subdirectory3' => array(
+                'subdirectory3' => [
                     'dummynator.txt'
-                )
-            )
-        );
+                ]
+            ]
+        ];
     }
 
     public function testIsMDArray()
@@ -80,12 +80,12 @@ class ArraysTest extends TestCase
         $this->assertNotSame($files_tree, $dir_tree2);
     }
 
-    public function testMDSearch()
+    public function testSearchMd()
     {
         $result1 = Arrays::searchMd($this->array, $this->array[3], false);
-        $result2 = Arrays::searchMd($this->array, array('some' => 'value'), false);
+        $result2 = Arrays::searchMd($this->array, ['some' => 'value'], false);
 
-        $this->assertEquals($result1[0], 3);
+        $this->assertCount(2, $result1[0]);
         $this->assertFalse($result2);
     }
 }

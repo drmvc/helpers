@@ -11,7 +11,7 @@ class Validators
     /**
      * Regular expression for MAC tests
      */
-    const REGEXP_MAC = '([a-fA-F0-9]{2}[-:]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{4}\.){2}[0-9A-Fa-f]{4}';
+    const REGEXP_MAC = '/^([a-fA-F0-9]{2}[-:]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{4}\.){2}[0-9A-Fa-f]{4}/i';
 
     /**
      * Regular expression for UUID tests

@@ -3,7 +3,7 @@
 namespace DrMVC\Helpers;
 
 /**
- * Simple GeoPosition class based on below answer
+ * Simple geoposition class based on below answer
  * @link http://stackoverflow.com/a/17286519/7977798
  * @package DrMVC\Helpers
  */

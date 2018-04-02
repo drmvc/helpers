@@ -23,31 +23,22 @@ class CleanerTest extends TestCase
         $this->tests[5] = 'get_5_user.json';
     }
 
-    public function testDefault()
+    public function testInt()
     {
-        $this->assertEquals(Cleaner::run($this->tests[1]), 'data');
-        $this->assertEquals(Cleaner::run($this->tests[2]), '~!@#$%^&amp;*()_+ ');
-        $this->assertEquals(Cleaner::run($this->tests[3]), 'test123<br/>');
-        $this->assertEquals(Cleaner::run($this->tests[4]), '1,2,3<br/>');
-        $this->assertEquals(Cleaner::run($this->tests[5]), 'get_5_user.json');
+        $this->assertEquals(Cleaner::run($this->tests[1], 'int'), '');
+        $this->assertEquals(Cleaner::run($this->tests[2], 'int'), '');
+        $this->assertEquals(Cleaner::run($this->tests[3], 'int'), '123');
+        $this->assertEquals(Cleaner::run($this->tests[4], 'int'), '123');
+        $this->assertEquals(Cleaner::run($this->tests[5], 'int'), '5');
     }
 
-    public function testNum()
+    public function testFloat()
     {
-        $this->assertEquals(Cleaner::run($this->tests[1], 'num'), '');
-        $this->assertEquals(Cleaner::run($this->tests[2], 'num'), '');
-        $this->assertEquals(Cleaner::run($this->tests[3], 'num'), '123');
-        $this->assertEquals(Cleaner::run($this->tests[4], 'num'), '123');
-        $this->assertEquals(Cleaner::run($this->tests[5], 'num'), '5');
-    }
-
-    public function testNumex()
-    {
-        $this->assertEquals(Cleaner::run($this->tests[1], 'numex'), '');
-        $this->assertEquals(Cleaner::run($this->tests[2], 'numex'), '');
-        $this->assertEquals(Cleaner::run($this->tests[3], 'numex'), '123');
-        $this->assertEquals(Cleaner::run($this->tests[4], 'numex'), '1,2,3');
-        $this->assertEquals(Cleaner::run($this->tests[5], 'numex'), '5');
+        $this->assertEquals(Cleaner::run($this->tests[1], 'float'), '');
+        $this->assertEquals(Cleaner::run($this->tests[2], 'float'), '');
+        $this->assertEquals(Cleaner::run($this->tests[3], 'float'), '123');
+        $this->assertEquals(Cleaner::run($this->tests[4], 'float'), '1,2,3');
+        $this->assertEquals(Cleaner::run($this->tests[5], 'float'), '5');
     }
 
     public function testText()
@@ -59,30 +50,13 @@ class CleanerTest extends TestCase
         $this->assertEquals(Cleaner::run($this->tests[5], 'text'), 'getuserjson');
     }
 
-    public function testAPI()
+    public function testDefault()
     {
-        $this->assertEquals(Cleaner::run($this->tests[1], 'api'), 'data');
-        $this->assertEquals(Cleaner::run($this->tests[2], 'api'), 'amp_');
-        $this->assertEquals(Cleaner::run($this->tests[3], 'api'), 'test123br');
-        $this->assertEquals(Cleaner::run($this->tests[4], 'api'), '123br');
-        $this->assertEquals(Cleaner::run($this->tests[5], 'api'), 'get_5_user.json');
+        $this->assertEquals(Cleaner::run($this->tests[1]), 'data');
+        $this->assertEquals(Cleaner::run($this->tests[2]), '~!@#$%^&amp;*()_+ ');
+        $this->assertEquals(Cleaner::run($this->tests[3]), 'test123<br/>');
+        $this->assertEquals(Cleaner::run($this->tests[4]), '1,2,3<br/>');
+        $this->assertEquals(Cleaner::run($this->tests[5]), 'get_5_user.json');
     }
 
-    public function testFilename()
-    {
-        $this->assertEquals(Cleaner::run($this->tests[1], 'filename'), 'data');
-        $this->assertEquals(Cleaner::run($this->tests[2], 'filename'), '!amp()_+');
-        $this->assertEquals(Cleaner::run($this->tests[3], 'filename'), 'test123br');
-        $this->assertEquals(Cleaner::run($this->tests[4], 'filename'), '1,2,3br');
-        $this->assertEquals(Cleaner::run($this->tests[5], 'filename'), 'get_5_user.json');
-    }
-
-    public function testJSON()
-    {
-        $this->assertEquals(Cleaner::run($this->tests[1], 'json'), 'data');
-        $this->assertEquals(Cleaner::run($this->tests[2], 'json'), '~!@#$%^&amp;*()_+ ');
-        $this->assertEquals(Cleaner::run($this->tests[3], 'json'), 'test123<br/>');
-        $this->assertEquals(Cleaner::run($this->tests[4], 'json'), '1,2,3<br/>');
-        $this->assertEquals(Cleaner::run($this->tests[5], 'json'), 'get_5_user.json');
-    }
 }

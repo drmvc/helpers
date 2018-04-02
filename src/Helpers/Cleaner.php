@@ -9,55 +9,60 @@ namespace DrMVC\Helpers;
 class Cleaner
 {
 
+    const INT = '\D';
+    const FLOAT = self::INT . '\,\.';
+    const CHARS_RUS = 'а-яё';
+    const CHARS_ENG = 'a-z';
+
+    private static function fixQuotes($value): string
+    {
+        return htmlspecialchars(addslashes($value), ENT_QUOTES);
+    }
+
+    private static function fixNewlines($value): string
+    {
+        return preg_replace(['/\r\n\r\n/', '/\n\n/'], ['<br/>', '<br/>'], $value);
+    }
+
+    private static function compileRegexp($line): string
+    {
+        return '/[^' . $line . ']/iu';
+    }
+
     /**
      * Cleanup the value
      *
-     * @param $value
-     * @param null $type
-     * @return mixed|string
+     * @param   string $value
+     * @param   string $type
+     * @return  mixed
      */
-    public static function run($value, $type = null)
+    public static function run(string $value, string $type = null)
     {
-
         switch ($type) {
-            case 'num':
-                $value = htmlspecialchars(addslashes($value), ENT_QUOTES);
-                $value = preg_replace("/[^0-9]/i", "", $value);
+            case 'int':
+                $value = self::fixQuotes($value);
+                $regexp = self::compileRegexp(self::INT);
                 break;
-            case 'numex':
-                $value = htmlspecialchars(addslashes($value), ENT_QUOTES);
-                $value = preg_replace("/[^0-9\,]/i", "", $value);
+            case 'float':
+                $value = self::fixQuotes($value);
+                $regexp = self::compileRegexp(self::FLOAT);
                 break;
             case 'text':
-                $value = htmlspecialchars($value, ENT_QUOTES);
-                $value = preg_replace(array("/\r\n\r\n/", "/\n\n/"), array("<br/>", "<br/>"), $value);
-                $value = preg_replace("/[^а-яёa-z]/iu", "", $value);
-                break;
-            case 'api':
-                $value = htmlspecialchars($value, ENT_QUOTES);
-                $value = preg_replace(array("/\r\n\r\n/", "/\n\n/"), array("<br/>", "<br/>"), $value);
-                $value = preg_replace("/[^а-яёa-z0-9\-\_\.]/iu", "", $value);
-                break;
-            case 'filename':
-                $value = htmlspecialchars($value, ENT_QUOTES);
-                $value = preg_replace(array("/\r\n\r\n/", "/\n\n/"), array("<br/>", "<br/>"), $value);
-                $value = preg_replace("/[^а-яёa-z\.\,\_\-\+\=\?\(\)\!0-9]/iu", "", $value);
-                break;
-            case 'json':
-                $value = htmlspecialchars($value, ENT_QUOTES);
-                $value = preg_replace(array("/\r\n\r\n/", "/\n\n/"), array("<br/>", "<br/>"), $value);
-                $value = preg_replace("/[^а-яёa-z0-9\—\~\`\.\,\@\%\{\}\[\]\/\:\<\>\\\;\?\&\(\)\_\#\!\$\*\^\-\+\=\ \n\r]/iu",
-                    "", $value);
+                $value = self::fixQuotes($value);
+                $value = self::fixNewlines($value);
+                $regexp = self::compileRegexp(self::CHARS_RUS . self::CHARS_ENG);
                 break;
             default:
-                $value = htmlspecialchars($value, ENT_QUOTES);
-                $value = preg_replace(array("/\r\n\r\n/", "/\n\n/"), array("<br/>", "<br/>"), $value);
-                $value = preg_replace("/[^а-яёa-z0-9\—\~\`\.\,\@\%\[\]\/\:\<\>\\\;\?\&\(\)\_\#\!\$\*\^\-\+\=\ \n\r]/iu",
-                    "", $value);
+                $value = self::fixQuotes($value);
+                $value = self::fixNewlines($value);
+                $regexp = self::compileRegexp(
+                    self::CHARS_RUS . self::CHARS_ENG . self::FLOAT .
+                    '\—\~\`\@\%\[\]\/\:\<\>\\\;\?\&\(\)\_\#\!\$\*\^\-\+\=\ \n\r'
+                );
                 break;
         }
 
-        return $value;
+        return preg_replace($regexp, '', $value);
     }
 
 }

@@ -27,7 +27,7 @@ Collection of classes with some useful features.
 * [x] Arrays.php
 * [x] Cleaner.php
 * [x] Generators.php
-* [x] GeoPosition.php
+* [x] Geo.php
 * [ ] HTML.php
 * [x] UUID.php
 * [x] Validators.php

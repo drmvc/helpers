@@ -3,6 +3,7 @@
 namespace DrMVC\Helpers\Tests;
 
 use PHPUnit\Framework\TestCase;
+use DrMVC\Helpers\Validators;
 
 class ValidatorsTest extends TestCase
 {
@@ -22,27 +23,27 @@ class ValidatorsTest extends TestCase
 
     public function testMAC()
     {
-        $this->assertTrue(Validators::is_valid_mac($this->mac_true));
-        $this->assertFalse(Validators::is_valid_mac($this->mac_false));
+        $this->assertTrue(Validators::isValidMAC($this->mac_true));
+        $this->assertFalse(Validators::isValidMAC($this->mac_false));
     }
 
     public function testUrl()
     {
-        $this->assertTrue(Validators::is_valid_url('http://example.com'));
-        $this->assertFalse(Validators::is_valid_url('http:/example.com'));
+        $this->assertTrue(Validators::isValidURL('http://example.com'));
+        $this->assertFalse(Validators::isValidURL('http:/example.com'));
 
-        $this->assertTrue(Validators::is_valid_url('http://example.com/some_query', true));
-        $this->assertFalse(Validators::is_valid_url('http:/example.com', true));
-        $this->assertFalse(Validators::is_valid_url('http:/example.com', true));
+        $this->assertTrue(Validators::isValidURL('http://example.com/some_query', true));
+        $this->assertFalse(Validators::isValidURL('http:/example.com', true));
+        $this->assertFalse(Validators::isValidURL('http:/example.com', true));
     }
 
     public function testEmail()
     {
-        $this->assertTrue(Validators::is_valid_email($this->email_valid, false));
-        $this->assertFalse(Validators::is_valid_email($this->email_invalid, false));
+        $this->assertTrue(Validators::isValidEmail($this->email_valid ));
+        $this->assertTrue(Validators::isValidEmail($this->email_invalid));
 
-        $this->assertTrue(Validators::is_valid_email($this->email_valid, true));
-        $this->assertTrue(Validators::is_valid_email($this->email_invalid, true));
+        $this->assertTrue(Validators::isValidEmail($this->email_valid, false));
+        $this->assertFalse(Validators::isValidEmail($this->email_invalid, false));
     }
 
 }
