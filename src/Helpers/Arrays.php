@@ -37,15 +37,12 @@ class Arrays
      * @param   array $array
      * @return  bool
      */
-    public static function isMulti($array): bool
+    public static function isMulti(array $array): bool
     {
-        // First we need know what value is array
-        if (\is_array($array)) {
-            // And if some element is array then $array is multidimensional
-            foreach ($array as $value) {
-                if (\is_array($value)) {
-                    return true;
-                }
+        // If some element is array then $array is multidimensional
+        foreach ($array as $value) {
+            if (\is_array($value)) {
+                return true;
             }
         }
         return false;
@@ -60,14 +57,12 @@ class Arrays
      */
     public static function equal(array $a, array $b): bool
     {
-        // Both arrays should be... arrays
-        $is_arrays = (\is_array($a) && \is_array($b));
         // Elements count should be equal
         $count_equal = (\count($a) === \count($b));
         // Between the keys should not be differences
         $difference = (array_diff($a, $b) === array_diff($b, $a));
 
-        return ($is_arrays && $count_equal && $difference);
+        return ($count_equal && $difference);
     }
 
     /**
@@ -142,16 +137,15 @@ class Arrays
      *
      * @param   array|object $multi where need to make search
      * @param   array $target what we want to find
-     * @param   bool $isObject if multidimensional array is object
      * @return  bool|array
      */
-    public static function searchMd($multi, $target, $isObject = true)
+    public static function searchMd($multi, $target)
     {
         if (empty($target) || empty($multi)) {
             return false;
         }
 
-        $output = $isObject
+        $output = \is_object($multi)
             ? self::searchMdObject($multi, $target)
             : self::searchMdArray($multi, $target);
 

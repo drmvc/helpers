@@ -59,7 +59,7 @@ class Geo
      * @param string $radius - In kilometers or meters (1 - km, .1 - 100 meters)
      * @return array - Simple array with LAT,LON coordinates which are within the radius
      */
-    public static function getCoordinatesWithinRadius($coordinates, $center, $radius)
+    public static function getCoordinatesWithinRadius($coordinates, $center, $radius): array
     {
         $resultArray = [];
         list($lat1, $long1) = $center;

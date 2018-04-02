@@ -91,9 +91,9 @@ class UUID
      *
      * @param   string $namespace
      * @param   string $name
-     * @return  string
+     * @return  bool|string
      */
-    public static function v5(string $namespace, string $name): string
+    public static function v5(string $namespace, string $name)
     {
         if (!Validators::isValidUUID($namespace)) {
             return false;
