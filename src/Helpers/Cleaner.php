@@ -9,24 +9,20 @@ namespace DrMVC\Helpers;
 class Cleaner
 {
 
-    const INT = '\D';
+    const INT = '0-9';
     const FLOAT = self::INT . '\,\.';
     const CHARS_RUS = 'а-яё';
     const CHARS_ENG = 'a-z';
+    const SUPER = '\*\#\ \n\r';
 
     private static function fixQuotes($value): string
     {
         return htmlspecialchars(addslashes($value), ENT_QUOTES);
     }
 
-    private static function fixNewlines($value): string
-    {
-        return preg_replace(['/\r\n\r\n/', '/\n\n/'], ['<br/>', '<br/>'], $value);
-    }
-
     private static function compileRegexp($line): string
     {
-        return '/[^' . $line . ']/iu';
+        return '#[^' . $line . ']#iu';
     }
 
     /**
@@ -40,24 +36,20 @@ class Cleaner
     {
         switch ($type) {
             case 'int':
-                $value = self::fixQuotes($value);
                 $regexp = self::compileRegexp(self::INT);
                 break;
             case 'float':
-                $value = self::fixQuotes($value);
                 $regexp = self::compileRegexp(self::FLOAT);
                 break;
             case 'text':
                 $value = self::fixQuotes($value);
-                $value = self::fixNewlines($value);
                 $regexp = self::compileRegexp(self::CHARS_RUS . self::CHARS_ENG);
                 break;
             default:
                 $value = self::fixQuotes($value);
-                $value = self::fixNewlines($value);
                 $regexp = self::compileRegexp(
                     self::CHARS_RUS . self::CHARS_ENG . self::FLOAT .
-                    '\—\~\`\@\%\[\]\/\:\<\>\\\;\?\&\(\)\_\#\!\$\*\^\-\+\=\ \n\r'
+                    '—~`@%[]/:<>;?&()_!$^-+=' . self::SUPER
                 );
                 break;
         }
