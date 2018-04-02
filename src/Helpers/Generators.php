@@ -1,4 +1,6 @@
-<?php namespace DrMVC\Helpers;
+<?php
+
+namespace DrMVC\Helpers;
 
 class Generators
 {

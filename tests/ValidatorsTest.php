@@ -1,5 +1,6 @@
-<?php namespace DrMVC\Helpers;
-include __DIR__ . "/../src/Validators.php";
+<?php
+
+namespace DrMVC\Helpers\Tests;
 
 use PHPUnit\Framework\TestCase;
 
@@ -14,7 +15,7 @@ class ValidatorsTest extends TestCase
     {
         parent::__construct($name, $data, $dataName);
         $this->mac_true = 'aa:bb:cc:dd:ee:ff';
-        $this->mac_false= 'mac-address';
+        $this->mac_false = 'mac-address';
         $this->email_valid = 'test@mail.com';
         $this->email_invalid = 'z test@mail.com';
     }
@@ -30,7 +31,7 @@ class ValidatorsTest extends TestCase
         $this->assertTrue(Validators::is_valid_url('http://example.com'));
         $this->assertFalse(Validators::is_valid_url('http:/example.com'));
 
-        $this->assertTrue(Validators::is_valid_url('http://example.com/some_query',true));
+        $this->assertTrue(Validators::is_valid_url('http://example.com/some_query', true));
         $this->assertFalse(Validators::is_valid_url('http:/example.com', true));
         $this->assertFalse(Validators::is_valid_url('http:/example.com', true));
     }
@@ -40,8 +41,8 @@ class ValidatorsTest extends TestCase
         $this->assertTrue(Validators::is_valid_email($this->email_valid, false));
         $this->assertFalse(Validators::is_valid_email($this->email_invalid, false));
 
-        $this->assertTrue(Validators::is_valid_email($this->email_valid,true));
-        $this->assertTrue(Validators::is_valid_email($this->email_invalid,true));
+        $this->assertTrue(Validators::is_valid_email($this->email_valid, true));
+        $this->assertTrue(Validators::is_valid_email($this->email_invalid, true));
     }
 
 }

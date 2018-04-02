@@ -1,23 +1,25 @@
-<?php namespace DrMVC\Helpers;
+<?php
+
+namespace DrMVC\Helpers;
 
 /**
  * Simple GeoPosition class based on below answer
  * @link http://stackoverflow.com/a/17286519/7977798
  * @package DrMVC\Helpers
  */
-class GeoPosition
+class Geo
 {
 
     /**
      * Generate array of random coordinates for tests
      *
-     * @param int $count - Count of results
-     * @param int $radius - In kilometers
-     * @return array
+     * @param   int $count Count of results
+     * @param   int $radius In kilometers
+     * @return  array
      */
-    public static function randomCoordinates($count = 1, $radius = 100)
+    public static function randomCoordinates($count = 1, $radius = 100): array
     {
-        $result = array();
+        $result = [];
         // If count is set
         for ($i = 0; $i < $count; $i++) {
             // Random angle (from 0 bad idea)
@@ -25,12 +27,12 @@ class GeoPosition
             // Random radius (from 0 bad idea)
             $pointRadius = mt_rand(1, $radius);
             // Result array
-            $result[] = array(
+            $result[] = [
                 // Latitude
                 sin($angle) * $pointRadius,
                 // Longitude
                 cos($angle) * $pointRadius
-            );
+            ];
         }
 
         return $result;
@@ -59,14 +61,14 @@ class GeoPosition
      */
     public static function getCoordinatesWithinRadius($coordinates, $center, $radius)
     {
-        $resultArray = array();
-        $lat1 = $center[0];
-        $long1 = $center[1];
+        $resultArray = [];
+        list($lat1, $long1) = $center;
         foreach ($coordinates as $key => $value) {
-            $lat2 = $value[0];
-            $long2 = $value[1];
+            list($lat2, $long2) = $value;
             $distance = 3959 * acos(cos(self::radians($lat1)) * cos(self::radians($lat2)) * cos(self::radians($long2) - self::radians($long1)) + sin(self::radians($lat1)) * sin(self::radians($lat2)));
-            if ($distance < $radius) $resultArray[$key] = $value;
+            if ($distance < $radius) {
+                $resultArray[$key] = $value;
+            }
         }
         return $resultArray;
     }

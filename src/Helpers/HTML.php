@@ -12,7 +12,7 @@ class HTML
      * @param null $data_id
      * @return string
      */
-    public static function selector($name, $arr, $test = -1, $data_id = NULL)
+    public static function selector($name, $arr, $test = -1, $data_id = null)
     {
         $out = "<select class='" . $name . " form-control' name='" . $name . "' data-id='" . $data_id . "'>";
         //$out = $out."<option value='NULL' disabled selected>---</option>";
@@ -43,7 +43,9 @@ class HTML
     {
         // Checked if true status
         $checked = '';
-        if (true === $status) $checked = 'checked';
+        if (true === $status) {
+            $checked = 'checked';
+        }
 
         $result = "<input type='checkbox' data-id='" . $id . "' name='" . $name . "' " . $checked . ">";
         return $result;

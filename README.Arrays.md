@@ -1,4 +1,4 @@
-# \DrMVC\Helpers\Arrays
+# DrMVC\Helpers\Arrays
 
 Manipulation with single and multidimensional arrays.
 
@@ -17,22 +17,22 @@ $arrayK = [
     ["title" => "apple", "count" => 5]
 ];
 
+// Order some array by key
+$sorted = Arrays::orderBy($arrayK, 'title', SORT_ASC);
+
 // Check if array is multidimentional
-Arrays::is_md($array); // false
-Arrays::is_md($arrayM1); // true
+Arrays::isMulti($array); // false
+Arrays::isMulti($arrayM1); // true
 
 // Check if arrays is equal
-Arrays::equivalent($arrayM1, $arrayM2) // true
-Arrays::equivalent($arrayM1, $arrayM3) // false
-
-// Order some array by key
-$sorted = Arrays::order_by($arrayK, 'title', SORT_ASC);
+Arrays::equal($arrayM1, $arrayM2) // true
+Arrays::equal($arrayM1, $arrayM3) // false
 
 // Scan folder content to array
-$folder = Arrays::dir_to_array('/path/to/folder');
+$folder = Arrays::dirToArr('/path/to/folder');
 
 // Try to find array inside array
-Arrays::md_search($arrayK, ["title" => "lemon", "count" => 4], false);
+Arrays::searchMd($arrayK, ["title" => "lemon", "count" => 4], false);
 ```
 
 ## More examples

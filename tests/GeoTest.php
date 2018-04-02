@@ -1,9 +1,11 @@
-<?php namespace DrMVC\Helpers;
-include __DIR__ . "/../src/GeoPosition.php";
+<?php
+
+namespace DrMVC\Helpers\Tests;
 
 use PHPUnit\Framework\TestCase;
+use DrMVC\Helpers\Geo;
 
-class GeoPositionTest extends TestCase
+class GeoTest extends TestCase
 {
     public $coordinates;
     public $degrees;
@@ -13,7 +15,7 @@ class GeoPositionTest extends TestCase
         parent::__construct($name, $data, $dataName);
 
         // Generate coordinates
-        $this->coordinates = GeoPosition::randomCoordinates(10, 1);
+        $this->coordinates = Geo::randomCoordinates(10, 1);
 
         // Array of degrees
         $this->degrees = array(1, 10, 50, 100, 200, 250, 270, 300, 310, 350);
@@ -22,10 +24,10 @@ class GeoPositionTest extends TestCase
     public function testRadians()
     {
         foreach ($this->degrees as $degree) {
-            $normal = (string)deg2rad($degree);
-            $custom = (string)GeoPosition::radians($degree);
+            $normal = (string) deg2rad($degree);
+            $custom = (string) Geo::radians($degree);
 
-            $this->assertTrue($normal == $custom);
+            $this->assertSame($normal, $custom);
         }
     }
 
@@ -33,9 +35,9 @@ class GeoPositionTest extends TestCase
     {
         foreach ($this->coordinates as $coordinates) {
             // Result should one at least
-            $result = GeoPosition::getCoordinatesWithinRadius($this->coordinates, $coordinates, 100);
+            $result = Geo::getCoordinatesWithinRadius($this->coordinates, $coordinates, 100);
 
-            $this->assertTrue(count($result) > 0);
+            $this->assertTrue(\count($result) > 0);
         }
     }
 }

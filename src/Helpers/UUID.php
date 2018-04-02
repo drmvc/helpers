@@ -1,8 +1,10 @@
-<?php namespace DrMVC\Helpers;
+<?php
+
+namespace DrMVC\Helpers;
 
 /**
  * Class UUID for creation unique ids
- * @package System\Core
+ * @package DrMVC\Helpers
  */
 class UUID
 {
@@ -15,7 +17,9 @@ class UUID
      */
     public static function v3($namespace, $name)
     {
-        if (!self::is_valid($namespace)) return false;
+        if (!Validators::isValidUUID($namespace)) {
+            return false;
+        }
 
         // Get hexadecimal components of namespace
         $nhex = str_replace(array('-', '{', '}'), '', $namespace);
@@ -25,7 +29,7 @@ class UUID
 
         // Convert Namespace UUID to bits
         for ($i = 0; $i < strlen($nhex); $i += 2) {
-            $nstr .= chr(hexdec($nhex[$i] . $nhex[$i + 1]));
+            $nstr .= \chr(hexdec($nhex[$i] . $nhex[$i + 1]));
         }
 
         // Calculate hash value
@@ -56,9 +60,9 @@ class UUID
     /**
      * Generate identifier of 3rd version
      *
-     * @return string
+     * @return  string
      */
-    public static function v4()
+    public static function v4(): string
     {
         return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
 
@@ -85,13 +89,15 @@ class UUID
     /**
      * Generate identifier of 5th version
      *
-     * @param $namespace
-     * @param $name
-     * @return bool|string
+     * @param   string $namespace
+     * @param   string $name
+     * @return  string
      */
-    public static function v5($namespace, $name)
+    public static function v5(string $namespace, string $name): string
     {
-        if (!self::is_valid($namespace)) return false;
+        if (!Validators::isValidUUID($namespace)) {
+            return false;
+        }
 
         // Get hexadecimal components of namespace
         $nhex = str_replace(array('-', '{', '}'), '', $namespace);
@@ -101,7 +107,7 @@ class UUID
 
         // Convert Namespace UUID to bits
         for ($i = 0; $i < strlen($nhex); $i += 2) {
-            $nstr .= chr(hexdec($nhex[$i] . $nhex[$i + 1]));
+            $nstr .= \chr(hexdec($nhex[$i] . $nhex[$i + 1]));
         }
 
         // Calculate hash value
@@ -129,15 +135,4 @@ class UUID
         );
     }
 
-    /**
-     * Check if UUID is valid
-     *
-     * @param $uuid
-     * @return bool
-     */
-    public static function is_valid($uuid)
-    {
-        return preg_match('/^\{?[0-9a-f]{8}\-?[0-9a-f]{4}\-?[0-9a-f]{4}\-?' .
-            '[0-9a-f]{4}\-?[0-9a-f]{12}\}?$/i', $uuid) === 1;
-    }
 }
