@@ -3,10 +3,10 @@
 namespace DrMVC\Helpers;
 
 /**
- * Class Validators
+ * Simple validators of some non typical values
  * @package DrMVC\Helpers
  */
-class Validators
+class Validate
 {
     /**
      * Regular expression for MAC tests

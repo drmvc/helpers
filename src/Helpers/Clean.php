@@ -3,24 +3,35 @@
 namespace DrMVC\Helpers;
 
 /**
- * Class Cleaner
+ * Clean variables from bad content
  * @package DrMVC\Helpers
  */
-class Cleaner
+class Clean
 {
-
     const INT = '0-9';
     const FLOAT = self::INT . '\,\.';
     const CHARS_RUS = 'а-яё';
     const CHARS_ENG = 'a-z';
     const SUPER = '\*\#\ \n\r';
 
-    private static function fixQuotes($value): string
+    /**
+     * Convert quotes to save format
+     *
+     * @param   string $value
+     * @return  string
+     */
+    private static function fixQuotes(string $value): string
     {
         return htmlspecialchars(addslashes($value), ENT_QUOTES);
     }
 
-    private static function compileRegexp($line): string
+    /**
+     * Compile regexp from string
+     *
+     * @param   string $line
+     * @return  string
+     */
+    private static function compileRegexp(string $line): string
     {
         return '#[^' . $line . ']#iu';
     }

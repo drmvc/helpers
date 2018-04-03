@@ -82,8 +82,8 @@ class ArraysTest extends TestCase
 
     public function testSearchMd()
     {
-        $result1 = Arrays::searchMd($this->array, $this->array[3], false);
-        $result2 = Arrays::searchMd($this->array, ['some' => 'value'], false);
+        $result1 = Arrays::searchMd($this->array, $this->array[3]);
+        $result2 = Arrays::searchMd($this->array, ['some' => 'value']);
 
         $this->assertCount(2, $result1[0]);
         $this->assertFalse($result2);

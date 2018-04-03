@@ -18,7 +18,7 @@ class GeoTest extends TestCase
         $this->coordinates = Geo::randomCoordinates(10, 1);
 
         // Array of degrees
-        $this->degrees = array(1, 10, 50, 100, 200, 250, 270, 300, 310, 350);
+        $this->degrees = [1, 10, 50, 100, 200, 250, 270, 300, 310, 350];
     }
 
     public function testRadians()

@@ -37,4 +37,4 @@ Arrays::searchMd($arrayK, ["title" => "lemon", "count" => 4], false);
 
 ## More examples
 
-Any other examples of work you can find [here](../tests/ArraysTest.php).
+Some other examples of usage you can find [here](../extra).

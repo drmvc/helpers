@@ -9,7 +9,6 @@ namespace DrMVC\Helpers;
  */
 class Geo
 {
-
     /**
      * Generate array of random coordinates for tests
      *

@@ -11,13 +11,13 @@ class UUID
     /**
      * Generate identifier of 3rd version
      *
-     * @param $namespace
-     * @param $name
-     * @return bool|string
+     * @param   string $namespace
+     * @param   string $name
+     * @return  bool|string
      */
     public static function v3($namespace, $name)
     {
-        if (!Validators::isValidUUID($namespace)) {
+        if (!Validate::isValidUUID($namespace)) {
             return false;
         }
 
@@ -95,7 +95,7 @@ class UUID
      */
     public static function v5(string $namespace, string $name)
     {
-        if (!Validators::isValidUUID($namespace)) {
+        if (!Validate::isValidUUID($namespace)) {
             return false;
         }
 

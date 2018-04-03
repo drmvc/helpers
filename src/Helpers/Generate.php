@@ -2,9 +2,12 @@
 
 namespace DrMVC\Helpers;
 
-class Generators
+/**
+ * Few generators of some non typical content
+ * @package DrMVC\Helpers
+ */
+class Generate
 {
-
     /**
      * Get either a Gravatar URL or complete image tag for a specified email address.
      * @source https://gravatar.com/site/implement/images/php/
@@ -51,7 +54,6 @@ class Generators
 
         $slug = preg_replace($lettersNumbersSpacesHyphens, '', $slug);
         $slug = preg_replace($spacesDuplicateHypens, '-', $slug);
-
         $slug = trim($slug, '-');
 
         return mb_strtolower($slug, 'UTF-8');
