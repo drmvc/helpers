@@ -14,14 +14,14 @@ Collection of classes with some useful features.
 
 ## List of classes
 
-| Class                                            | Description |
-|--------------------------------------------------|-------------|
-| [\DrMVC\Helpers\Arrays](docs/README.Arrays.md)   | Manipulation with single and multidimensional arrays |
-| [\DrMVC\Helpers\Arrays](docs/README.Clean.md)    | Text cleaner class |
-| [\DrMVC\Helpers\Arrays](docs/README.Generate.md) | URL slug and Gravatar generators |
-| [\DrMVC\Helpers\Arrays](docs/README.Geo.md)      | For work with geographic coordinates |
-| [\DrMVC\Helpers\Arrays](docs/README.UUID.md)     | UUID v3/v4/v5 generator |
-| [\DrMVC\Helpers\Arrays](docs/README.Validate.md) | Some specified validators |
+| Class                                              | Description |
+|----------------------------------------------------|-------------|
+| [\DrMVC\Helpers\Arrays](docs/README.Arrays.md)     | Manipulation with single and multidimensional arrays |
+| [\DrMVC\Helpers\Clean](docs/README.Clean.md)       | Text cleaner class |
+| [\DrMVC\Helpers\Generate](docs/README.Generate.md) | URL slug and Gravatar generators |
+| [\DrMVC\Helpers\Geo](docs/README.Geo.md)           | For work with geographic coordinates |
+| [\DrMVC\Helpers\UUID](docs/README.UUID.md)         | UUID v3/v4/v5 generator |
+| [\DrMVC\Helpers\Validate](docs/README.Validate.md) | Some specified validators |
 
 ## About PHP Unit Tests
 
