@@ -35,6 +35,7 @@ class ValidateTest extends TestCase
 
     public function testUrl()
     {
+        $this->assertTrue(Validate::isValidURL('http://example.com/?asd', true));
         $this->assertTrue(Validate::isValidURL('http://example.com'));
         $this->assertFalse(Validate::isValidURL('http:/example.com'));
 

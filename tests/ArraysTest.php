@@ -9,6 +9,7 @@ class ArraysTest extends TestCase
 {
     public $array;
     public $array_keys;
+    public $object;
     public $dir;
     public $dir_array;
 
@@ -26,6 +27,11 @@ class ArraysTest extends TestCase
         $this->array[1] = ['k1' => 'v1', 'k2' => 'v2'];
         $this->array[2] = ['k2' => 'v2', 'k1' => 'v1'];
         $this->array[3] = ['k1' => 'v1', 'k3' => 'v3'];
+
+        $this->object = new \stdClass();
+        $this->object->k1 = 'v1';
+        $this->object->k2 = 'v2';
+        $this->object->k3 = ['k1' => 'v1', 'k2' => 'v2'];
 
         $this->dir = __DIR__ . '/dir4tests';
         $this->dir_array = [
@@ -47,6 +53,7 @@ class ArraysTest extends TestCase
     {
         $this->assertTrue(Arrays::isMulti($this->array));
         $this->assertFalse(Arrays::isMulti($this->array[1]));
+        $this->assertTrue(Arrays::isMulti($this->object));
     }
 
     public function testArrayEqual()
@@ -84,8 +91,13 @@ class ArraysTest extends TestCase
     {
         $result1 = Arrays::searchMd($this->array, $this->array[3]);
         $result2 = Arrays::searchMd($this->array, ['some' => 'value']);
+        $result3 = Arrays::searchMd($this->object, ['k1' => 'v1']);
+        $result4 = Arrays::searchMd($this->object, null);
+
+        print_r($result3);
 
         $this->assertCount(2, $result1[0]);
         $this->assertFalse($result2);
+        $this->assertFalse($result4);
     }
 }

@@ -34,10 +34,10 @@ class Arrays
     /**
      * Check if array is multidimensional
      *
-     * @param   array $array
+     * @param   object|array $array
      * @return  bool
      */
-    public static function isMulti(array $array): bool
+    public static function isMulti($array): bool
     {
         // If some element is array then $array is multidimensional
         foreach ($array as $value) {
@@ -134,6 +134,8 @@ class Arrays
 
     /**
      * Find nested array inside two-dimensional array
+     *
+     * TODO: Not work with objects
      *
      * @param   array|object $multi where need to make search
      * @param   array $target what we want to find

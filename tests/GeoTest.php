@@ -31,7 +31,7 @@ class GeoTest extends TestCase
         }
     }
 
-    public function testCoordinatesRandom()
+    public function testGetCoordinatesWithinRadius()
     {
         foreach ($this->coordinates as $coordinates) {
             // Result should one at least
@@ -39,5 +39,12 @@ class GeoTest extends TestCase
 
             $this->assertTrue(\count($result) > 0);
         }
+    }
+
+    public function testRandomCoordinates()
+    {
+        $random = Geo::randomCoordinates(10, 100);
+        $this->assertInternalType('array', $random);
+        $this->assertCount(10, $random);
     }
 }

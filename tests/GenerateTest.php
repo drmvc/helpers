@@ -11,7 +11,7 @@ class GenerateTest extends TestCase
     public function testGravatar()
     {
         $img_url = Generate::gravatar('test@mail.com');
-        $img_tag = Generate::gravatar('test@mail.com','80','mm','g',true);
+        $img_tag = Generate::gravatar('test@mail.com','80','mm','g',true, ['qwe' => 'asd']);
 
         $this->assertTrue(Validate::isValidURL($img_url));
         $this->assertFalse(Validate::isValidURL($img_tag));

@@ -12,6 +12,9 @@ class UUIDTest extends TestCase
     {
         $uuid = UUID::v3(UUID::v4(), 'test');
         $this->assertTrue(Validate::isValidUUID($uuid));
+
+        $uuid2 = UUID::v3('lol', 'test');
+        $this->assertFalse($uuid2);
     }
 
     public function testV4()
@@ -24,5 +27,8 @@ class UUIDTest extends TestCase
     {
         $uuid = UUID::v5(UUID::v4(), 'test');
         $this->assertTrue(Validate::isValidUUID($uuid));
+
+        $uuid2 = UUID::v5('lol', 'test');
+        $this->assertFalse($uuid2);
     }
 }
