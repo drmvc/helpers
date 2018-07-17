@@ -13,7 +13,7 @@ class Mongo
 {
     /**
      * Cleanup result of query
-     * @param object $array
+     * @param array $array
      */
     public static function resultFix(&$array)
     {
