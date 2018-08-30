@@ -12,8 +12,20 @@ use MongoDB\BSON\UTCDateTime;
 class Mongo
 {
     /**
+     * Check if id have a valid length
+     * @param   string $id
+     * @return  bool
+     */
+    public static function checkId(string $id): bool
+    {
+        // If strlen is incorrect, then return error
+        $len = \strlen($id);
+        return ($len !== 24 || $len !== 12);
+    }
+
+    /**
      * Cleanup result of query
-     * @param array|object $array
+     * @param  array|object $array
      */
     public static function resultFix(&$array)
     {
