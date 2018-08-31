@@ -39,11 +39,11 @@ class Clean
     /**
      * Cleanup the value
      *
-     * @param   string $value
+     * @param   string|int|null $value
      * @param   string $type
      * @return  mixed
      */
-    public static function run(string $value, string $type = null)
+    public static function run($value, string $type = null)
     {
         switch ($type) {
             case 'int':

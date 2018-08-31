@@ -18,7 +18,8 @@ class CleanerTest extends TestCase
             '~!@#$%^&*()_+ ',
             'test123\r\n\r\n',
             '1,2,3\n\n',
-            'get_5_user.json'
+            'get_5_user.json',
+            null
         ];
     }
 
@@ -29,6 +30,7 @@ class CleanerTest extends TestCase
         $this->assertEquals(Clean::run($this->tests[2], 'int'), '123');
         $this->assertEquals(Clean::run($this->tests[3], 'int'), '123');
         $this->assertEquals(Clean::run($this->tests[4], 'int'), '5');
+        $this->assertEquals(Clean::run($this->tests[5], 'int'), null);
     }
 
     public function testFloat()
