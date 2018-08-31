@@ -20,7 +20,7 @@ class Clean
      * @param   string $value
      * @return  string
      */
-    private static function fixQuotes(string $value): string
+    private static function fixQuotes($value): string
     {
         return htmlspecialchars(addslashes($value), ENT_QUOTES);
     }
