@@ -7,23 +7,10 @@ use DrMVC\Helpers\Geo;
 
 class GeoTest extends TestCase
 {
-    public $coordinates;
-    public $degrees;
-
-    public function __construct($name = null, array $data = [], $dataName = '')
-    {
-        parent::__construct($name, $data, $dataName);
-
-        // Generate coordinates
-        $this->coordinates = Geo::randomCoordinates(10, 1);
-
-        // Array of degrees
-        $this->degrees = [1, 10, 50, 100, 200, 250, 270, 300, 310, 350];
-    }
-
     public function testRadians()
     {
-        foreach ($this->degrees as $degree) {
+        $degrees = [1, 10, 50, 100, 200, 250, 270, 300, 310, 350];
+        foreach ($degrees as $degree) {
             $normal = (string) deg2rad($degree);
             $custom = (string) Geo::radians($degree);
 
@@ -31,20 +18,25 @@ class GeoTest extends TestCase
         }
     }
 
-    public function testGetCoordinatesWithinRadius()
-    {
-        foreach ($this->coordinates as $coordinates) {
-            // Result should one at least
-            $result = Geo::getCoordinatesWithinRadius($this->coordinates, $coordinates, 100);
-
-            $this->assertTrue(\count($result) > 0);
-        }
-    }
-
     public function testRandomCoordinates()
     {
-        $random = Geo::randomCoordinates(10, 100);
-        $this->assertInternalType('array', $random);
+        $random = Geo::randomCoordinates(100);
+        $this->assertCount(2, $random);
+    }
+
+    public function testRandomCoordinatesArray()
+    {
+        $random = Geo::randomCoordinatesArray(10, 1);
         $this->assertCount(10, $random);
+        $this->assertCount(2, $random[9]);
+    }
+
+    public function testIsCoordinatesInRadius()
+    {
+        $coordinates = [47, 47];
+        $center1 = [47, 47];
+        $center2 = [57, 57];
+        $this->assertTrue(Geo::isCoordinatesInRadius($coordinates, $center1, 100));
+        $this->assertFalse(Geo::isCoordinatesInRadius($coordinates, $center2, 100));
     }
 }
