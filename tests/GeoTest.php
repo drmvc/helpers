@@ -39,4 +39,13 @@ class GeoTest extends TestCase
         $this->assertTrue(Geo::isCoordinatesInRadius($coordinates, $center1, 100));
         $this->assertFalse(Geo::isCoordinatesInRadius($coordinates, $center2, 100));
     }
+
+    public function testGetCoordinatesWithinRadius()
+    {
+        $coordinates = [[47, 47], [57, 57]];
+        $center = [47, 47];
+        $result = Geo::getCoordinatesWithinRadius($coordinates, $center, 100);
+
+        $this->assertSame($result[0], $coordinates[0]);
+    }
 }
